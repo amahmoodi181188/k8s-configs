@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: app1
-        image: alimah181188/go-app1:1
+        image: alimah181188/app1:1.2
         ports:
         - containerPort: 8080
 ---

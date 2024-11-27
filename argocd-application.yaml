@@ -9,10 +9,11 @@ spec:
     server: https://kubernetes.default.svc
   source:
     repoURL: https://github.com/amahmoodi181188/k8s-configs.git
-    targetRevision: main
+    targetRevision: HEAD
     path: ./manifests
   project: default
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+

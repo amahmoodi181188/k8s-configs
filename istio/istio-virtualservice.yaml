@@ -1,21 +1,22 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: go-apps
+  name: nginx-routing
+  namespace: default
 spec:
   hosts:
   - "*"
   gateways:
-  - go-apps-gateway
+  - nginx-gateway
   http:
   - route:
     - destination:
-        host: app2-service
+        host: app2
         port:
-          number: 80
+          number: 8080
       weight: 80
     - destination:
-        host: app1-service
+        host: app1
         port:
-          number: 80
+          number: 8080
       weight: 20

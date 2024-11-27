@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app2
+  name: nginx
+  namespace: default
 spec:
-  replicas: 2
   selector:
     matchLabels:
-      app: app2
+      app: nginx
+  replicas: 2
   template:
     metadata:
       labels:
-        app: app2
+        app: nginx
     spec:
       containers:
-      - name: app2
-        image: alimah181188/go-app1:1.1
+      - name: nginx
+        image: nginx:1.21
         ports:
-        - containerPort: 8080
-        
+        - containerPort: 80

@@ -13,6 +13,7 @@ spec:
       labels:
         app: app1
     spec:
+      serviceAccountName: nginx-sa
       containers:
       - name: app1
         image: alimah181188/go-app1:1.4

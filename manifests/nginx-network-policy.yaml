@@ -1,0 +1,17 @@
+# nginx-network-policy.yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: nginx-allow-lb
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: nginx
+  ingress:
+  - from:
+    - ipBlock:
+        cidr: <allowed-ip-range>/32
+    ports:
+    - protocol: TCP
+      port: 80

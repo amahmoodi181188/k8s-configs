@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/falcosecurity/charts
+    repoURL: https://falcosecurity.github.io/charts
     targetRevision: 4.15.1
     chart: falco
   destination:

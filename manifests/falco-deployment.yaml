@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/falcosecurity/charts
-    targetRevision: latest
+    targetRevision: 4.15.1
     chart: falco
   destination:
     server: https://kubernetes.default.svc

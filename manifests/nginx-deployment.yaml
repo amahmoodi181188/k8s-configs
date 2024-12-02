@@ -15,22 +15,14 @@ spec:
     spec:
       serviceAccountName: nginx-sa
       securityContext:
-        fsGroup: 2000  # Ensures ConfigMap files are readable by group
-      initContainers:
-      - name: init-permissions
-        image: busybox
-        command: ["sh", "-c", "chown 1000:3000 /etc/nginx/nginx.conf"]
-        volumeMounts:
-        - name: nginx-config
-          mountPath: /etc/nginx/nginx.conf
-          subPath: nginx.conf
+        fsGroup: 2000
       containers:
       - name: nginx
         image: nginx:1.21
         ports:
         - containerPort: 80
         securityContext:
-          runAsUser: 1000
+          runAsUser: 0  # it need to be changes to something like 100o but it showes me en error and  I couldn't fix it yet
           runAsGroup: 3000
         resources:
           requests:

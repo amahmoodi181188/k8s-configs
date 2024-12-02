@@ -21,16 +21,6 @@ spec:
         image: nginx:1.21
         ports:
         - containerPort: 80
-        securityContext:
-          runAsUser: 1000
-          runAsGroup: 3000
-        resources:
-          requests:
-            cpu: "100m"
-            memory: "128Mi"
-          limits:
-            cpu: "500m"
-            memory: "512Mi"
         volumeMounts:
         - name: nginx-config
           mountPath: /etc/nginx/nginx.conf
@@ -39,3 +29,4 @@ spec:
       - name: nginx-config
         configMap:
           name: nginx-config
+

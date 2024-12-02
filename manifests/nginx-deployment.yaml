@@ -20,8 +20,8 @@ spec:
         ports:
         - containerPort: 80
         securityContext:
-          runAsUser: 101  # Match Nginx container default user
-          runAsGroup: 101
+          runAsUser: 0  # Match Nginx container default user
+          runAsGroup: 0
         resources:
           requests:
             cpu: "100m"

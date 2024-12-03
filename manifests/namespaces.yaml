@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: app1-namespace
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: app2-namespace
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: nginx-namespace

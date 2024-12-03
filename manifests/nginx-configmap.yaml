@@ -2,14 +2,14 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: nginx-config
-  namespace: default
+  namespace: nginx-namespace
 data:
   nginx.conf: |
     events {}
     http {
         upstream backend {
-            server app1.default.svc.cluster.local:8080 weight=1; # 20% traffic
-            server app2.default.svc.cluster.local:8080 weight=4; # 80% traffic
+            server app1.app1-namespace.svc.cluster.local:8080 weight=1; # 20% traffic
+            server app2.app2-namespace.svc.cluster.local:8080 weight=4; # 80% traffic
         }
 
         server {

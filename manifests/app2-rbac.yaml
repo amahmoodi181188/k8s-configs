@@ -1,23 +1,23 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  namespace: nginx-namespace
-  name: nginx-role
+  namespace: app2-namespace
+  name: app2-role
 rules:
   - apiGroups: [""]
-    resources: ["pods", "services", "endpoints"]
+    resources: ["pods", "services"]
     verbs: ["get", "list", "watch"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  namespace: nginx-namespace
-  name: nginx-role-binding
+  namespace: app2-namespace
+  name: app2-role-binding
 subjects:
   - kind: ServiceAccount
-    name: nginx-sa
-    namespace: nginx-namespace
+    name: app2-sa
+    namespace: app2-namespace
 roleRef:
   kind: Role
-  name: nginx-role
+  name: app2-role
   apiGroup: rbac.authorization.k8s.io

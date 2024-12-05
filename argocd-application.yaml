@@ -2,10 +2,10 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: go-apps
-  namespace: argocd
+  namespace: argocd # Namespace where ArgoCD is installed
 spec:
   destination:
-    namespace: default
+    namespace: nginx-namespace # Target namespace for deployment
     server: https://kubernetes.default.svc
   source:
     repoURL: https://github.com/amahmoodi181188/k8s-configs.git
@@ -16,4 +16,3 @@ spec:
     automated:
       prune: true
       selfHeal: true
-

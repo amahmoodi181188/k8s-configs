@@ -10,7 +10,7 @@ spec:
   ingress:
     - from:
         - ipBlock:
-            cidr: 0.0.0.0/0
+            cidr: 0.0.0.0/0 # Allow traffic from anywhere to Nginx
       ports:
         - protocol: TCP
           port: 80

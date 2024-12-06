@@ -9,7 +9,7 @@ spec:
       app: app1
   ingress:
     - from:
-      - namespaceSelector:
+      - podSelector:
           matchLabels:
             app: nginx
 ---
@@ -24,6 +24,6 @@ spec:
       app: app2
   ingress:
     - from:
-      - namespaceSelector:
+      - podSelector:
           matchLabels:
             app: nginx

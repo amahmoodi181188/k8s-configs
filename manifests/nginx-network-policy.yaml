@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   name: nginx-allow-lb
-  namespace: default
+  namespace: nginx-namespace
 spec:
   podSelector:
     matchLabels:

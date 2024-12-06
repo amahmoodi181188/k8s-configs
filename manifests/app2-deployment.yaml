@@ -18,16 +18,16 @@ spec:
       - name: app2
         image: alimah181188/go-app2:1.4
         ports:
-        - containerPort: 8080
+        - containerPort: 80
         readinessProbe:
           httpGet:
             path: /healthz
-            port: 8080
+            port: 80
           initialDelaySeconds: 5
           periodSeconds: 10
         livenessProbe:
           httpGet:
             path: /healthz
-            port: 8080
+            port: 80
           initialDelaySeconds: 5
           periodSeconds: 10

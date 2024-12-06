@@ -15,11 +15,3 @@ spec:
       ports:
         - protocol: TCP
           port: 8080
-  egress:
-    - to:
-        - namespaceSelector:
-            matchLabels:
-              name: nginx-namespace
-      ports:
-        - protocol: TCP
-          port: 80

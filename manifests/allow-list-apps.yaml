@@ -12,17 +12,11 @@ spec:
         - namespaceSelector:
             matchLabels:
               name: nginx-namespace
-      ports:
-        - protocol: TCP
-          port: 80
   egress:
     - to:
         - namespaceSelector:
             matchLabels:
               name: nginx-namespace
-      ports:
-        - protocol: TCP
-          port: 8080
 ---
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
@@ -38,14 +32,8 @@ spec:
         - namespaceSelector:
             matchLabels:
               name: nginx-namespace
-      ports:
-        - protocol: TCP
-          port: 80
   egress:
     - to:
         - namespaceSelector:
             matchLabels:
               name: nginx-namespace
-      ports:
-        - protocol: TCP
-          port: 8080

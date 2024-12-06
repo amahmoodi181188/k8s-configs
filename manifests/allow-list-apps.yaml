@@ -12,6 +12,11 @@ spec:
       - podSelector:
           matchLabels:
             app: nginx
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app: nginx
 ---
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
@@ -27,3 +32,8 @@ spec:
       - podSelector:
           matchLabels:
             app: nginx
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app: nginx 

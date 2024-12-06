@@ -21,11 +21,11 @@ spec:
               app: app1 # Allow Nginx to reach app1
       ports:
         - protocol: TCP
-          port: 80 # App1 service port
+          port: 8080 # App1 service port
     - to:
         - podSelector:
             matchLabels:
               app: app2 # Allow Nginx to reach app2
       ports:
         - protocol: TCP
-          port: 80 # App2 service port
+          port: 8080 # App2 service port

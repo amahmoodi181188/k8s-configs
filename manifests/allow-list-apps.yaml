@@ -13,24 +13,24 @@ spec:
         - namespaceSelector:
             matchLabels:
               name: nginx-namespace # Allow Nginx pods to access app1
-        - namespaceSelector:
-            matchLabels:
-              name: kube-system # Allow kube-dns for DNS resolution
-          podSelector:
-            matchLabels:
-              k8s-app: kube-dns
   egress:
     - to:
+        - podSelector:
+            matchLabels:
+              k8s-app: kube-dns # Allow outgoing DNS queries
+          namespaceSelector:
+            matchLabels:
+              name: kube-system
         - namespaceSelector:
             matchLabels:
               name: nginx-namespace # Allow responses to Nginx pods
-        - namespaceSelector:
-            matchLabels:
-              name: kube-system # Allow communication to kube-dns
-          podSelector:
-            matchLabels:
-              k8s-app: kube-dns
-
+      ports:
+        - protocol: TCP
+          port: 80
+        - protocol: UDP
+          port: 53 # DNS
+        - protocol: TCP
+          port: 53 # DNS
 ---
 # Allow Nginx to communicate with app2 in app2-namespace
 apiVersion: networking.k8s.io/v1
@@ -47,20 +47,21 @@ spec:
         - namespaceSelector:
             matchLabels:
               name: nginx-namespace # Allow Nginx pods to access app2
-        - namespaceSelector:
-            matchLabels:
-              name: kube-system # Allow kube-dns for DNS resolution
-          podSelector:
-            matchLabels:
-              k8s-app: kube-dns
   egress:
     - to:
+        - podSelector:
+            matchLabels:
+              k8s-app: kube-dns # Allow outgoing DNS queries
+          namespaceSelector:
+            matchLabels:
+              name: kube-system
         - namespaceSelector:
             matchLabels:
               name: nginx-namespace # Allow responses to Nginx pods
-        - namespaceSelector:
-            matchLabels:
-              name: kube-system # Allow communication to kube-dns
-          podSelector:
-            matchLabels:
-              k8s-app: kube-dns
+      ports:
+        - protocol: TCP
+          port: 80
+        - protocol: UDP
+          port: 53 # DNS
+        - protocol: TCP
+          port: 53 # DNS

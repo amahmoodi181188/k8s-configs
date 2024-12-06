@@ -5,14 +5,14 @@ metadata:
   namespace: argocd # Namespace where ArgoCD is installed
 spec:
   destination:
-    namespace: nginx-namespace # Target namespace for deployment
+    namespace: nginx-namespace # Default namespace for deployment
     server: https://kubernetes.default.svc
   source:
     repoURL: https://github.com/amahmoodi181188/k8s-configs.git
     targetRevision: HEAD
-    path: ./manifests
+    path: ./manifests # Directory containing Kubernetes manifests
   project: default
   syncPolicy:
     automated:
-      prune: true
-      selfHeal: true
+      prune: true # Automatically prune resources that are no longer in Git
+      selfHeal: true # Automatically sync if drift is detected

@@ -4,7 +4,9 @@ metadata:
   name: allow-nginx
   namespace: app2-namespace
 spec:
-  podSelector: {}
+  podSelector:
+    matchLabels:
+      app: app2
   ingress:
     - from:
         - namespaceSelector:
@@ -13,3 +15,11 @@ spec:
       ports:
         - protocol: TCP
           port: 8080
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              name: nginx-namespace
+      ports:
+        - protocol: TCP
+          port: 80

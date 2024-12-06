@@ -1,31 +1,37 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: nginx-allow-lb
+  name: allow-nginx
   namespace: nginx-namespace
 spec:
   podSelector:
     matchLabels:
-      app: nginx # Applies to Nginx pods
+      app: nginx
   ingress:
     - from:
         - ipBlock:
             cidr: 0.0.0.0/0 # Allow traffic from anywhere to Nginx
       ports:
         - protocol: TCP
-          port: 80 # Allow HTTP traffic to Nginx
+          port: 80
   egress:
     - to:
-        - podSelector:
+        - namespaceSelector:
             matchLabels:
-              app: app1 # Allow Nginx to reach app1
+              name: app1-namespace
+          podSelector: 
+            matchLabels:
+              app: app1
       ports:
         - protocol: TCP
-          port: 8080 # App1 service port
+          port: 8080
     - to:
-        - podSelector:
+        - namespaceSelector:
             matchLabels:
-              app: app2 # Allow Nginx to reach app2
+              name: app2-namespace
+          podSelector:
+            matchLabels:
+              app: app2
       ports:
         - protocol: TCP
-          port: 8080 # App2 service port
+          port: 8080

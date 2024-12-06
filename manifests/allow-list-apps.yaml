@@ -1,3 +1,4 @@
+# Allow Nginx to communicate with app1 in app1-namespace
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
@@ -11,13 +12,27 @@ spec:
     - from:
         - namespaceSelector:
             matchLabels:
-              name: nginx-namespace
+              name: nginx-namespace # Allow Nginx pods to access app1
+        - namespaceSelector:
+            matchLabels:
+              name: kube-system # Allow kube-dns for DNS resolution
+          podSelector:
+            matchLabels:
+              k8s-app: kube-dns
   egress:
     - to:
         - namespaceSelector:
             matchLabels:
-              name: nginx-namespace
+              name: nginx-namespace # Allow responses to Nginx pods
+        - namespaceSelector:
+            matchLabels:
+              name: kube-system # Allow communication to kube-dns
+          podSelector:
+            matchLabels:
+              k8s-app: kube-dns
+
 ---
+# Allow Nginx to communicate with app2 in app2-namespace
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
@@ -31,9 +46,21 @@ spec:
     - from:
         - namespaceSelector:
             matchLabels:
-              name: nginx-namespace
+              name: nginx-namespace # Allow Nginx pods to access app2
+        - namespaceSelector:
+            matchLabels:
+              name: kube-system # Allow kube-dns for DNS resolution
+          podSelector:
+            matchLabels:
+              k8s-app: kube-dns
   egress:
     - to:
         - namespaceSelector:
             matchLabels:
-              name: nginx-namespace
+              name: nginx-namespace # Allow responses to Nginx pods
+        - namespaceSelector:
+            matchLabels:
+              name: kube-system # Allow communication to kube-dns
+          podSelector:
+            matchLabels:
+              k8s-app: kube-dns

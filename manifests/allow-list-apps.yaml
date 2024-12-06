@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: allow-nginx-to-app1
+  name: allow-nginx-namespace
   namespace: app1-namespace
 spec:
   podSelector:
@@ -9,19 +9,25 @@ spec:
       app: app1
   ingress:
     - from:
-      - podSelector:
-          matchLabels:
-            app: nginx
+        - namespaceSelector:
+            matchLabels:
+              name: nginx-namespace
+      ports:
+        - protocol: TCP
+          port: 80
   egress:
     - to:
-        - podSelector:
+        - namespaceSelector:
             matchLabels:
-              app: nginx
+              name: nginx-namespace
+      ports:
+        - protocol: TCP
+          port: 8080
 ---
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: allow-nginx-to-app2
+  name: allow-nginx-namespace
   namespace: app2-namespace
 spec:
   podSelector:
@@ -29,11 +35,17 @@ spec:
       app: app2
   ingress:
     - from:
-      - podSelector:
-          matchLabels:
-            app: nginx
+        - namespaceSelector:
+            matchLabels:
+              name: nginx-namespace
+      ports:
+        - protocol: TCP
+          port: 80
   egress:
     - to:
-        - podSelector:
+        - namespaceSelector:
             matchLabels:
-              app: nginx 
+              name: nginx-namespace
+      ports:
+        - protocol: TCP
+          port: 8080

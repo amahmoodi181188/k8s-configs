@@ -21,7 +21,7 @@ spec:
   egress:
     - to:
         - ipBlock:
-            cidr: 34.118.224.10/32 # Allow access to Kubernetes DNS service
+            cidr: 0.0.0.0/0 # Allow access to Kubernetes DNS service
       ports:
         - protocol: UDP
           port: 53 # DNS resolution
@@ -51,7 +51,7 @@ spec:
   egress:
     - to:
         - ipBlock:
-            cidr: 34.118.224.10/32 # Allow access to Kubernetes DNS service
+            cidr: 0.0.0.0/0 # Allow access to Kubernetes DNS service
       ports:
         - protocol: UDP
           port: 53 # DNS resolution

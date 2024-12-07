@@ -1,0 +1,59 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-nginx-to-app1
+  namespace: app1-namespace
+spec:
+  podSelector:
+    matchLabels:
+      app: app1 # Adjust this to match the labels for your app1 Pods
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              name: nginx-namespace # Allow traffic from Nginx namespace
+      ports:
+        - protocol: TCP
+          port: 8080 # Allow HTTP traffic from Nginx
+  egress:
+    - to:
+        - ipBlock:
+            cidr: 0.0.0.0/0 # Allow access to Kubernetes DNS service
+      ports:
+        - protocol: UDP
+          port: 53 # DNS resolution
+        - protocol: TCP
+          port: 53
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-nginx-to-app2
+  namespace: app2-namespace
+spec:
+  podSelector:
+    matchLabels:
+      app: app2 # Adjust this to match the labels for your app2 Pods
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              name: nginx-namespace # Allow traffic from Nginx namespace
+      ports:
+        - protocol: TCP
+          port: 8080 # Allow HTTP traffic from Nginx
+  egress:
+    - to:
+        - ipBlock:
+            cidr: 0.0.0.0/0 # Allow access to Kubernetes DNS service
+      ports:
+        - protocol: UDP
+          port: 53 # DNS resolution
+        - protocol: TCP
+          port: 53

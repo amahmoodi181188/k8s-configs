@@ -22,12 +22,22 @@ spec:
         - namespaceSelector:
             matchLabels:
               name: app1-namespace # Allow traffic to app1's namespace
+          podSelector:
+            matchLabels:
+              app: app1 # Allow traffic only to Pods labeled as app1
+      ports:
+        - protocol: TCP
+          port: 8080 # Backend service listens on port 8080
+    - to:
         - namespaceSelector:
             matchLabels:
               name: app2-namespace # Allow traffic to app2's namespace
+          podSelector:
+            matchLabels:
+              app: app2 # Allow traffic only to Pods labeled as app2
       ports:
         - protocol: TCP
-          port: 8080 # Backend services listen on port 8080
+          port: 8080 # Backend service listens on port 8080
     - to:
         - ipBlock:
             cidr: 34.0.0.0/8 # Allow access to Kubernetes DNS service

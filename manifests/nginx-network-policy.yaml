@@ -30,7 +30,7 @@ spec:
           port: 8080 # Backend services listen on port 8080
     - to:
         - ipBlock:
-            cidr: 0.0.0.0/0 # Allow access to Kubernetes DNS service
+            cidr: 34.0.0.0/8 # Allow access to Kubernetes DNS service
       ports:
         - protocol: UDP
           port: 53 # DNS resolution

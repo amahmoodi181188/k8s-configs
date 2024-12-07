@@ -11,7 +11,7 @@ spec:
     repoURL: https://github.com/amahmoodi181188/k8s-configs.git
     targetRevision: HEAD
     path: ./manifests # Directory containing Kubernetes manifests
-  project: default
+  project: nginx-namespace
   syncPolicy:
     automated:
       prune: true # Automatically prune resources that are no longer in Git

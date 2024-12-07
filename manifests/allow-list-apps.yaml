@@ -14,7 +14,10 @@ spec:
     - from:
         - namespaceSelector:
             matchLabels:
-              name: nginx-namespace # Allow traffic from Nginx namespace
+              name: nginx-namespace # Allow traffic from default namespace
+          podSelector:
+            matchLabels:
+              app: nginx # Allow traffic only from Nginx Pods in default namespace
       ports:
         - protocol: TCP
           port: 8080 # Allow HTTP traffic from Nginx
@@ -33,7 +36,7 @@ spec:
               name: nginx-namespace
           podSelector:
             matchLabels:
-              app: nginx
+              app: nginx # Allow traffic only to Nginx Pods in default namespace
       ports:
         - protocol: TCP
           port: 80
@@ -54,7 +57,10 @@ spec:
     - from:
         - namespaceSelector:
             matchLabels:
-              name: nginx-namespace # Allow traffic from Nginx namespace
+              name: nginx-namespace # Allow traffic from default namespace
+          podSelector:
+            matchLabels:
+              app: nginx # Allow traffic only from Nginx Pods in default namespace
       ports:
         - protocol: TCP
           port: 8080 # Allow HTTP traffic from Nginx
@@ -73,7 +79,7 @@ spec:
               name: nginx-namespace
           podSelector:
             matchLabels:
-              app: nginx
+              app: nginx # Allow traffic only to Nginx Pods in default namespace
       ports:
         - protocol: TCP
           port: 80
